@@ -1,6 +1,8 @@
 import './App.css';
 import { useEffect, useState } from "react";
-import Recipe from './Recipe/Recipe';
+import Recipe from './components/Recipe/Recipe';
+import { Button } from '@material-ui/core';
+import Footer from './components/Footer/Footer';
 
 const App = () => {
   const APP_ID = "928fa75b";
@@ -35,17 +37,20 @@ const App = () => {
     <div className="App">
       <form onSubmit={getSearch} className="search-form">
         <input className="search-bar" type="text" value={search} onChange={updateSearch} />
-        <button className="search-button" type="submit">Search</button>
+        <Button color="default" className="search-button" type="submit">Search</Button>
       </form>
-      {recipes.map(recipe => (
-        <Recipe
-          key={recipe.recipe.label}
-          title={recipe.recipe.label}
-          calories={recipe.recipe.calories}
-          image={recipe.recipe.image}
-          ingredients={recipe.recipe.ingredients}
-        />
-      ))}
+      <div className="recipes">
+        {recipes.map(recipe => (
+          <Recipe
+            key={recipe.recipe.label}
+            title={recipe.recipe.label}
+            calories={recipe.recipe.calories}
+            image={recipe.recipe.image}
+            ingredients={recipe.recipe.ingredients}
+          />
+        ))}
+      </div>
+      <Footer />
     </div>
   );
 }
